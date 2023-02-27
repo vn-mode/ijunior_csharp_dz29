@@ -12,3 +12,17 @@
 /Users/mac/Documents/ijunior/vn_mode_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.dll
 /Users/mac/Documents/ijunior/vn_mode_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.pdb
 /Users/mac/Documents/ijunior/vn_mode_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.genruntimeconfig.cache
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/bin/Debug/netcoreapp3.1/vn_mode_csharp_dz29
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/bin/Debug/netcoreapp3.1/vn_mode_csharp_dz29.deps.json
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/bin/Debug/netcoreapp3.1/vn_mode_csharp_dz29.runtimeconfig.json
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/bin/Debug/netcoreapp3.1/vn_mode_csharp_dz29.runtimeconfig.dev.json
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/bin/Debug/netcoreapp3.1/vn_mode_csharp_dz29.dll
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/bin/Debug/netcoreapp3.1/vn_mode_csharp_dz29.pdb
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.csproj.AssemblyReference.cache
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.AssemblyInfoInputs.cache
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.AssemblyInfo.cs
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.csproj.CoreCompileInputs.cache
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.dll
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.pdb
+/Users/vitalii/Documents/GitHub/ijunior_csharp_dz29/obj/Debug/netcoreapp3.1/vn_mode_csharp_dz29.genruntimeconfig.cache

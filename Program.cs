@@ -7,12 +7,12 @@ namespace vn_mode_csharp_dz29
         static void Main(string[] args)
         {
             bool isOpen = true;
-            string healthbar =  "[#_________]";
+            string healthBar =  "[#_________]";
             int percent = 10;
             while (isOpen)
             {
                 Console.SetCursorPosition(0, 0);
-                Console.WriteLine("Ваш Healthbar: " + healthbar + " " + percent + "%");
+                Console.WriteLine("Ваш Healthbar: " + healthBar + " " + percent + "%");
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("Доступные команды:");
                 Console.WriteLine("Ввести желаемый процент здоровья - 1");
@@ -25,7 +25,7 @@ namespace vn_mode_csharp_dz29
                     case "1":
                         Console.Write("Введите желаемый процент здоровья: ");
                         percent = Convert.ToInt32(Console.ReadLine());
-                        EditeHealthbar(ref percent, ref healthbar);
+                        EditeHealthbar(ref percent, ref healthBar);
                     break;
                     case "2":
                         Console.WriteLine("Вы вышли из программы.");
@@ -36,52 +36,54 @@ namespace vn_mode_csharp_dz29
                 Console.Clear();
             }
 
-            static void EditeHealthbar(ref int percent, ref string healthbar)
+           
+        }
+
+        static void EditeHealthbar(ref int percent, ref string healthbar)
+        {
+            if (percent > 0 && percent <= 10)
             {
-                if (percent > 0 && percent <= 10)
-                {
-                    healthbar = "[#_________]";
-                }
-                else if (percent > 10 && percent <= 20)
-                {
-                    healthbar = "[##________]";
-                }
-                else if (percent > 20 && percent <= 30)
-                {
-                    healthbar = "[###_______]";
-                }
-                else if (percent > 30 && percent <= 40)
-                {
-                    healthbar = "[####______]";
-                }
-                else if (percent > 40 && percent <= 50)
-                {
-                    healthbar = "[#####_____]";
-                }
-                else if (percent > 50 && percent <= 60)
-                {
-                    healthbar = "[######____]";
-                }
-                else if (percent > 60 && percent <= 70)
-                {
-                    healthbar = "[#######___]";
-                }
-                else if (percent > 70 && percent <= 80)
-                {
-                    healthbar = "[########__]";
-                }
-                else if (percent > 80 && percent <= 90)
-                {
-                    healthbar = "[#########_]";
-                }
-                else if (percent > 90 && percent <= 100)
-                {
-                    healthbar = "[##########]";
-                }
-                else
-                {
-                    Console.WriteLine("Вы ввели некорректное значение");
-                }
+                healthbar = "[#_________]";
+            }
+            else if (percent > 10 && percent <= 20)
+            {
+                healthbar = "[##________]";
+            }
+            else if (percent > 20 && percent <= 30)
+            {
+                healthbar = "[###_______]";
+            }
+            else if (percent > 30 && percent <= 40)
+            {
+                healthbar = "[####______]";
+            }
+            else if (percent > 40 && percent <= 50)
+            {
+                healthbar = "[#####_____]";
+            }
+            else if (percent > 50 && percent <= 60)
+            {
+                healthbar = "[######____]";
+            }
+            else if (percent > 60 && percent <= 70)
+            {
+                healthbar = "[#######___]";
+            }
+            else if (percent > 70 && percent <= 80)
+            {
+                healthbar = "[########__]";
+            }
+            else if (percent > 80 && percent <= 90)
+            {
+                healthbar = "[#########_]";
+            }
+            else if (percent > 90 && percent <= 100)
+            {
+                healthbar = "[##########]";
+            }
+            else
+            {
+                Console.WriteLine("Вы ввели некорректное значение");
             }
         }
     }
