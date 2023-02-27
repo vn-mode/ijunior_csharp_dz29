@@ -7,84 +7,59 @@ namespace vn_mode_csharp_dz29
         static void Main(string[] args)
         {
             bool isOpen = true;
-            string healthBar =  "[#_________]";
-            int percent = 10;
+
+            int playerHealth = 10;
+            int maxHealth = 100;
+
             while (isOpen)
             {
                 Console.SetCursorPosition(0, 0);
-                Console.WriteLine("Ваш Healthbar: " + healthBar + " " + percent + "%");
+                EditeHealthbar(playerHealth, maxHealth);
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("Доступные команды:");
                 Console.WriteLine("Ввести желаемый процент здоровья - 1");
-                Console.WriteLine("Выйти из программы - 2" +
-                    "");
+                Console.WriteLine("Выйти из программы - 2" + "");
                 Console.SetCursorPosition(0, 7);
+
                 Console.Write("Введите команду: ");
+
                 switch (Console.ReadLine())
                 {
                     case "1":
                         Console.Write("Введите желаемый процент здоровья: ");
-                        percent = Convert.ToInt32(Console.ReadLine());
-                        EditeHealthbar(ref percent, ref healthBar);
-                    break;
+                        playerHealth = Convert.ToInt32(Console.ReadLine());
+                        EditeHealthbar(playerHealth, maxHealth);
+                        break;
+
                     case "2":
                         Console.WriteLine("Вы вышли из программы.");
                         Console.ReadKey();
                         isOpen = false;
-                    break;
+                        break;
                 }
+
                 Console.Clear();
             }
-
-           
         }
 
-        static void EditeHealthbar(ref int percent, ref string healthbar)
+        static void EditeHealthbar(int playerHealth, int maxHealth, char symbolHealth = '#', char symbolEmptyHealth = '_')
         {
-            if (percent > 0 && percent <= 10)
+            string bar = "";
+
+            for (int i = 0; i < playerHealth; i += 10)
             {
-                healthbar = "[#_________]";
+                bar += symbolHealth;
             }
-            else if (percent > 10 && percent <= 20)
+
+            Console.Write($"[{bar}");
+            bar = "";
+
+            for (int i = playerHealth; i < maxHealth; i += 10)
             {
-                healthbar = "[##________]";
+                bar += symbolEmptyHealth;
             }
-            else if (percent > 20 && percent <= 30)
-            {
-                healthbar = "[###_______]";
-            }
-            else if (percent > 30 && percent <= 40)
-            {
-                healthbar = "[####______]";
-            }
-            else if (percent > 40 && percent <= 50)
-            {
-                healthbar = "[#####_____]";
-            }
-            else if (percent > 50 && percent <= 60)
-            {
-                healthbar = "[######____]";
-            }
-            else if (percent > 60 && percent <= 70)
-            {
-                healthbar = "[#######___]";
-            }
-            else if (percent > 70 && percent <= 80)
-            {
-                healthbar = "[########__]";
-            }
-            else if (percent > 80 && percent <= 90)
-            {
-                healthbar = "[#########_]";
-            }
-            else if (percent > 90 && percent <= 100)
-            {
-                healthbar = "[##########]";
-            }
-            else
-            {
-                Console.WriteLine("Вы ввели некорректное значение");
-            }
+
+            Console.Write($"{bar}] {playerHealth}%");
         }
     }
 }
