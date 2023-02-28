@@ -6,15 +6,19 @@ namespace vn_mode_csharp_dz29
     {
         static void Main(string[] args)
         {
+            const string CommandInputPlayerHealth = "1";
+            const string CommandExit = "2";
+
             bool isOpen = true;
 
             int playerHealth = 10;
             int maxHealth = 100;
+            int stepHealthInBar = 10;
 
             while (isOpen)
             {
                 Console.SetCursorPosition(0, 0);
-                DrawHealthbar(playerHealth, maxHealth);
+                DrawHealthbar(playerHealth, maxHealth, stepHealthInBar);
 
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("Доступные команды:");
@@ -26,13 +30,13 @@ namespace vn_mode_csharp_dz29
 
                 switch (Console.ReadLine())
                 {
-                    case "1":
+                    case CommandInputPlayerHealth:
                         Console.Write("Введите желаемый процент здоровья: ");
                         playerHealth = Convert.ToInt32(Console.ReadLine());
-                        DrawHealthbar(playerHealth, maxHealth);
+                        DrawHealthbar(playerHealth, maxHealth, stepHealthInBar);
                         break;
 
-                    case "2":
+                    case CommandExit:
                         Console.WriteLine("Вы вышли из программы.");
                         Console.ReadKey();
                         isOpen = false;
@@ -43,11 +47,11 @@ namespace vn_mode_csharp_dz29
             }
         }
 
-        static void DrawHealthbar(int playerHealth, int maxHealth, char symbolHealth = '#', char symbolEmptyHealth = '_')
+        static void DrawHealthbar(int playerHealth, int maxHealth, int stepHealthInBar, char symbolHealth = '#', char symbolEmptyHealth = '_')
         {
             string bar = "";
 
-            for (int i = 0; i < playerHealth; i += 10)
+            for (int i = 0; i < playerHealth; i += stepHealthInBar)
             {
                 bar += symbolHealth;
             }
@@ -55,7 +59,7 @@ namespace vn_mode_csharp_dz29
             Console.Write($"[{bar}");
             bar = "";
 
-            for (int i = playerHealth; i < maxHealth; i += 10)
+            for (int i = playerHealth; i < maxHealth; i += stepHealthInBar)
             {
                 bar += symbolEmptyHealth;
             }
