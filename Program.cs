@@ -51,20 +51,27 @@ namespace vn_mode_csharp_dz29
         {
             string bar = "";
 
-            for (int i = 0; i < playerHealth; i += stepHealthInBar)
+            if (playerHealth <= maxHealth && playerHealth > 0)
             {
-                bar += symbolHealth;
+                for (int i = 0; i < playerHealth; i += stepHealthInBar)
+                {
+                    bar += symbolHealth;
+                }
+
+                Console.Write($"[{bar}");
+                bar = "";
+
+                for (int i = playerHealth; i < maxHealth; i += stepHealthInBar)
+                {
+                    bar += symbolEmptyHealth;
+                }
+
+                Console.Write($"{bar}] {playerHealth}%");
             }
-
-            Console.Write($"[{bar}");
-            bar = "";
-
-            for (int i = playerHealth; i < maxHealth; i += stepHealthInBar)
+            else
             {
-                bar += symbolEmptyHealth;
+                Console.WriteLine("Вы ввели некорректное значение");
             }
-
-            Console.Write($"{bar}] {playerHealth}%");
         }
     }
 }
