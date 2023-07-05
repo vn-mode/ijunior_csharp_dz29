@@ -18,22 +18,31 @@ namespace vn_mode_csharp_dz29
             while (isOpen)
             {
                 Console.SetCursorPosition(0, 0);
-                DrawHealthbar(playerHealth, maxHealth, stepHealthInBar);
+                DrawHealthBar(playerHealth, maxHealth, stepHealthInBar);
 
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("Доступные команды:");
                 Console.WriteLine("Ввести желаемый процент здоровья - 1");
-                Console.WriteLine("Выйти из программы - 2" + "");
+                Console.WriteLine("Выйти из программы - 2");
 
                 Console.SetCursorPosition(0, 7);
                 Console.Write("Введите команду: ");
 
-                switch (Console.ReadLine())
+                string command = Console.ReadLine();
+
+                switch (command)
                 {
                     case CommandInputPlayerHealth:
-                        Console.Write("Введите желаемый процент здоровья: ");
-                        playerHealth = Convert.ToInt32(Console.ReadLine());
-                        DrawHealthbar(playerHealth, maxHealth, stepHealthInBar);
+                        try
+                        {
+                            Console.Write("Введите желаемый процент здоровья: ");
+                            playerHealth = Convert.ToInt32(Console.ReadLine());
+                            DrawHealthBar(playerHealth, maxHealth, stepHealthInBar);
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Введенные данные не являются числом. Пожалуйста, введите число.");
+                        }
                         break;
 
                     case CommandExit:
@@ -41,32 +50,24 @@ namespace vn_mode_csharp_dz29
                         Console.ReadKey();
                         isOpen = false;
                         break;
+
+                    default:
+                        Console.WriteLine($"Команда \"{command}\" не найдена. Пожалуйста, введите корректную команду.");
+                        break;
                 }
 
                 Console.Clear();
             }
         }
 
-        static void DrawHealthbar(int playerHealth, int maxHealth, int stepHealthInBar, char symbolHealth = '#', char symbolEmptyHealth = '_')
+        static void DrawHealthBar(int playerHealth, int maxHealth, int stepHealthInBar, char symbolHealth = '#', char symbolEmptyHealth = '_')
         {
-            string bar = "";
-
             if (playerHealth <= maxHealth && playerHealth > 0)
             {
-                for (int i = 0; i < playerHealth; i += stepHealthInBar)
-                {
-                    bar += symbolHealth;
-                }
+                string filledPart = new string(symbolHealth, playerHealth / stepHealthInBar);
+                string emptyPart = new string(symbolEmptyHealth, (maxHealth - playerHealth) / stepHealthInBar);
 
-                Console.Write($"[{bar}");
-                bar = "";
-
-                for (int i = playerHealth; i < maxHealth; i += stepHealthInBar)
-                {
-                    bar += symbolEmptyHealth;
-                }
-
-                Console.Write($"{bar}] {playerHealth}%");
+                Console.Write($"[{filledPart}{emptyPart}] {playerHealth}%");
             }
             else
             {
@@ -75,4 +76,3 @@ namespace vn_mode_csharp_dz29
         }
     }
 }
-
