@@ -4,75 +4,75 @@ namespace vn_mode_csharp_dz29
 {
     class Program
     {
+        const string CommandInputPlayerHealth = "1";
+        const string CommandExit = "2";
+        const string CommandPrompt = "Доступные команды:";
+        const string CommandInputPrompt = "Введите команду: ";
+        const string ExitMessage = "Вы вышли из программы.";
+        const string InvalidCommandMessage = "Команда \"{0}\" не найдена. Пожалуйста, введите корректную команду.";
+        const string InvalidHealthValueMessage = "Введено некорректное значение здоровья. Значение должно быть в диапазоне от 0 до 100.";
+        const string HealthBarPrefix = "\n[";
+
         static void Main(string[] args)
         {
-            const string CommandInputPlayerHealth = "1";
-            const string CommandExit = "2";
+            int playerHealth = 100;
+            const int maxHealth = 100;
+            const int barSize = 10;
 
-            bool isOpen = true;
-
-            int playerHealth = 10;
-            int maxHealth = 100;
-            int stepHealthInBar = 10;
-
-            while (isOpen)
+            while (true)
             {
-                Console.SetCursorPosition(0, 0);
-                DrawHealthBar(playerHealth, maxHealth, stepHealthInBar);
+                Console.Clear();
+                DrawHealthBar(playerHealth, maxHealth, barSize);
 
-                Console.SetCursorPosition(0, 3);
-                Console.WriteLine("Доступные команды:");
-                Console.WriteLine("Ввести желаемый процент здоровья - 1");
-                Console.WriteLine("Выйти из программы - 2");
+                Console.WriteLine("\n\n" + CommandPrompt);
+                Console.WriteLine("1 - Ввести желаемый процент здоровья");
+                Console.WriteLine("2 - Выйти из программы");
 
-                Console.SetCursorPosition(0, 7);
-                Console.Write("Введите команду: ");
-
+                Console.Write("\n" + CommandInputPrompt);
                 string command = Console.ReadLine();
 
                 switch (command)
                 {
-                    case CommandInputPlayerHealth:
-                        try
-                        {
-                            Console.Write("Введите желаемый процент здоровья: ");
-                            playerHealth = Convert.ToInt32(Console.ReadLine());
-                            DrawHealthBar(playerHealth, maxHealth, stepHealthInBar);
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Введенные данные не являются числом. Пожалуйста, введите число.");
-                        }
+                    case CommandInputPlayerHealth when InputPlayerHealth(ref playerHealth):
+                        DrawHealthBar(playerHealth, maxHealth, barSize);
                         break;
 
                     case CommandExit:
-                        Console.WriteLine("Вы вышли из программы.");
+                        Console.WriteLine(ExitMessage);
                         Console.ReadKey();
-                        isOpen = false;
-                        break;
+                        return;
 
                     default:
-                        Console.WriteLine($"Команда \"{command}\" не найдена. Пожалуйста, введите корректную команду.");
+                        Console.WriteLine(string.Format(InvalidCommandMessage, command));
+                        Console.ReadKey();
                         break;
                 }
-
-                Console.Clear();
             }
         }
 
-        static void DrawHealthBar(int playerHealth, int maxHealth, int stepHealthInBar, char symbolHealth = '#', char symbolEmptyHealth = '_')
+        static bool InputPlayerHealth(ref int playerHealth)
         {
-            if (playerHealth <= maxHealth && playerHealth > 0)
+            Console.Write("Введите желаемый процент здоровья: ");
+            if (int.TryParse(Console.ReadLine(), out int tempHealth) && tempHealth >= 0 && tempHealth <= 100)
             {
-                string filledPart = new string(symbolHealth, playerHealth / stepHealthInBar);
-                string emptyPart = new string(symbolEmptyHealth, (maxHealth - playerHealth) / stepHealthInBar);
+                playerHealth = tempHealth;
+                return true;
+            }
 
-                Console.Write($"[{filledPart}{emptyPart}] {playerHealth}%");
-            }
-            else
-            {
-                Console.WriteLine("Вы ввели некорректное значение");
-            }
+            Console.WriteLine(InvalidHealthValueMessage);
+            Console.ReadKey();
+            return false;
+        }
+
+        static void DrawHealthBar(int playerHealth, int maxHealth, int barSize, char symbolHealth = '#', char symbolEmptyHealth = '_')
+        {
+            int filledCells = playerHealth * barSize / 100;
+            int emptyCells = barSize - filledCells;
+
+            string filledPart = new string(symbolHealth, filledCells);
+            string emptyPart = new string(symbolEmptyHealth, emptyCells);
+
+            Console.Write($"{HealthBarPrefix}{filledPart}{emptyPart}] {playerHealth}%");
         }
     }
 }
