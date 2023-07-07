@@ -33,8 +33,10 @@ namespace vn_mode_csharp_dz29
 
                 switch (command)
                 {
-                    case CommandInputPlayerHealth when InputPlayerHealth(ref playerHealth):
-                        DrawHealthBar(playerHealth, maxHealth, barSize);
+                    case CommandInputPlayerHealth:
+                        bool inputSuccess = InputPlayerHealth(ref playerHealth);
+                        if (inputSuccess)
+                            DrawHealthBar(playerHealth, maxHealth, barSize);
                         break;
 
                     case CommandExit:
