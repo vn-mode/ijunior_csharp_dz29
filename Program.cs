@@ -15,14 +15,15 @@ namespace vn_mode_csharp_dz29
 
         static void Main(string[] args)
         {
-            int playerHealth = 100;
-            const int maxHealth = 100;
-            const int barSize = 10;
+            const int MaxHealth = 100;
+            const int BarSize = 10;
 
-            while (true)
+            int playerHealth = MaxHealth;
+
+            while (ProcessInput(playerHealth, MaxHealth, BarSize))
             {
                 Console.Clear();
-                DrawHealthBar(playerHealth, maxHealth, barSize);
+                DrawHealthBar(playerHealth, MaxHealth, BarSize);
 
                 Console.WriteLine("\n\n" + CommandPrompt);
                 Console.WriteLine("1 - Ввести желаемый процент здоровья");
@@ -33,10 +34,8 @@ namespace vn_mode_csharp_dz29
 
                 switch (command)
                 {
-                    case CommandInputPlayerHealth:
-                        bool inputSuccess = InputPlayerHealth(ref playerHealth);
-                        if (inputSuccess)
-                            DrawHealthBar(playerHealth, maxHealth, barSize);
+                    case CommandInputPlayerHealth when InputPlayerHealth(ref playerHealth):
+                        DrawHealthBar(playerHealth, MaxHealth, BarSize);
                         break;
 
                     case CommandExit:
@@ -50,6 +49,11 @@ namespace vn_mode_csharp_dz29
                         break;
                 }
             }
+        }
+
+        static bool ProcessInput(int playerHealth, int maxHealth, int barSize)
+        {
+            return playerHealth >= 0 && playerHealth <= maxHealth;
         }
 
         static bool InputPlayerHealth(ref int playerHealth)
@@ -68,7 +72,7 @@ namespace vn_mode_csharp_dz29
 
         static void DrawHealthBar(int playerHealth, int maxHealth, int barSize, char symbolHealth = '#', char symbolEmptyHealth = '_')
         {
-            int filledCells = playerHealth * barSize / 100;
+            int filledCells = playerHealth * barSize / maxHealth;
             int emptyCells = barSize - filledCells;
 
             string filledPart = new string(symbolHealth, filledCells);
